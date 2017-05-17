@@ -37,7 +37,7 @@ before the web server will display content.
 ### Quick Install
 For Easy webserver-install.sh onto raspbian RPI. 
 
-    curl -L https://raw.github.com/pageauc/webserver/master/source/webserver-install.sh | bash
+    curl -L https://raw.github.com/pageauc/webserver/master/webserver-install.sh | bash
 
 From a computer logged into the RPI via SSH(Putty) or desktop terminal session  
 * Use mouse to highlight curl command above, right click, copy.  
@@ -49,7 +49,7 @@ From logged in RPI SSH session or console terminal perform the following. You ca
 the webserver-install.sh script code before executing.
 
     cd ~
-    wget https://raw.github.com/pageauc/webserver/master/source/webserver-install.sh
+    wget https://raw.github.com/pageauc/webserver/master/webserver-install.sh
     chmod +x webserver-install.sh
     ./webserver-install.sh
     
