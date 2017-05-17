@@ -59,8 +59,11 @@ the webserver-install.sh script code before executing.
     ./webserver.sh   
  
 ### Customize Settings
-See settings.py for detailed settings   
-edit this file using nano editor
+
+The webserver.py variables are stored in the settings.py file.  These can be
+edited using the nano editor to customize for your particular needs if required
+   
+Edit settings.py file using nano editor per the following commands
 
     cd ~/webserver
     nano settings.py
@@ -68,7 +71,7 @@ edit this file using nano editor
 ctrl-x y to exit nano editor and save changes
     
 ### Reference Links  
-Detailed pi-timolo Wiki https://github.com/pageauc/webserver 
+github repo https://github.com/pageauc/webserver 
  
 Good Luck
 Claude Pageau 
