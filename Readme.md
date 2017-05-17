@@ -57,7 +57,10 @@ the webserver-install.sh script code before executing.
     
     cd ~/webserver
     ./webserver.sh   
- 
+
+A message will be displayed indicating the ip address:port to enter in
+a browser url bar.  This will access the webserver files in the server web root.
+    
 ### Customize Settings
 
 The webserver.py variables are stored in the settings.py file.  These can be
