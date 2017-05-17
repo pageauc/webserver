@@ -20,18 +20,18 @@ INSTALL_PATH=$( pwd )
 
 echo " Downloading Files"
 wget -O www/webserver.txt https://raw.github.com/pageauc/webserver/master/webserver.txt
-wget -O settings_new.py -q --show-progress https://raw.github.com/pageauc/webserver/master/source/settings.py
+wget -O settings_new.py -q --show-progress https://raw.github.com/pageauc/webserver/master/settings.py
 if [ $? -ne 0 ] ;  then
-  wget -O settings.py https://raw.github.com/pageauc/webserver/master/source/settings.py
-  wget -O webserver.py https://raw.github.com/pageauc/webserver/master/source/webserver.py
-  wget -O webserver.sh https://raw.github.com/pageauc/webserver/master/source/webserver.sh  
-  wget -O webserver-install.sh https://raw.github.com/pageauc/webserver/master/source/webserver-install.sh
+  wget -O settings.py https://raw.github.com/pageauc/webserver/master/settings.py
+  wget -O webserver.py https://raw.github.com/pageauc/webserver/master/webserver.py
+  wget -O webserver.sh https://raw.github.com/pageauc/webserver/master/webserver.sh  
+  wget -O webserver-install.sh https://raw.github.com/pageauc/webserver/master/webserver-install.sh
   wget -O Readme.md https://raw.github.com/pageauc/webserver/master/Readme.md
 else
-  wget -O settings.py -q --show-progress https://raw.github.com/pageauc/webserver/master/source/settings.py
-  wget -O webserver.py -q --show-progress https://raw.github.com/pageauc/webserver/master/source/webserver.py
-  wget -O webserver.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/source/webserver.sh
-  wget -O webserver-install.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/source/webserver-install.sh  
+  wget -O settings.py -q --show-progress https://raw.github.com/pageauc/webserver/master/settings.py
+  wget -O webserver.py -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.py
+  wget -O webserver.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.sh
+  wget -O webserver-install.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver-install.sh  
   wget -O Readme.md -q --show-progress https://raw.github.com/pageauc/webserver/master/Readme.md
 fi
   
