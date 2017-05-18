@@ -1,4 +1,4 @@
-# pi-timolo
+# webserver.py
 ### Raspberry (Pi) - Simple python Stand Alone Local Network Web Server 
 
 ### Description
@@ -53,14 +53,28 @@ the webserver-install.sh script code before executing.
     chmod +x webserver-install.sh
     ./webserver-install.sh
     
-### How to Run webserver.sh
+### How to Run webserver.py
     
     cd ~/webserver
-    ./webserver.sh   
+    ./webserver.py
 
 A message will be displayed indicating the ip address:port to enter in
-a browser url bar.  This will access the webserver files in the server web root.
-    
+a browser url bar.  This will access the webserver files in the server web root. 
+
+If you want to run the webserver.py as a background daemon then use webserver.sh
+If no parameter is specified it will display the PID or indicate webserver.py is
+not running. 
+
+To Start webserver.py as a background daemon
+
+    cd ~/webserver
+    ./webserver.sh start    
+
+To Stop webserver.py
+
+    cd ~/webserver
+    ./webserver.sh stop    
+     
 ### Customize Settings
 
 The webserver.py variables are stored in the settings.py file.  These can be
