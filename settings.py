@@ -7,11 +7,11 @@
 # Web Server settings
 # -------------------
 web_server_port = 8090        # default= 8080 Web server access port eg http://192.168.1.100:8080
-web_server_root = "www"      # default= "media" webserver root path to webserver image/video sub-folders
+web_server_root = "www"       # default= "media" webserver root path to webserver image/video sub-folders
 web_page_title = "My Webserver"  # web page title that browser show (not displayed on web page)
-web_page_refresh_on = True    # False=Off (never)  Refresh True=On (per seconds below)
+web_page_refresh_on = False   # False=Off (never)  Refresh True=On (per seconds below)
 web_page_refresh_sec = "180"  # default= "180" seconds to wait for web page refresh  seconds (three minutes)
-web_page_blank = False        # True Starts left image with a blank page until a right menu item is selected
+web_page_blank = True         # True Starts left image with a blank page until a right menu item is selected
                               # False displays second list[1] item since first may be in progressx
 
 # Left iFrame Image Settings
