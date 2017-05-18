@@ -1,15 +1,15 @@
 # webserver.py
-### Raspberry (Pi) - Simple python Stand Alone Local Network Web Server 
+### Raspberry Pi - Simple python Stand Alone Local Network Web Server 
 
 ### Description
 This is a single file stand alone python webserver that needs minimal or no setup. 
-This webserver can be used to remotely view images, video, document, Etc. files
-from other (LAN) network connected computers using a web browse. Directory links 
+This webserver can be used to remotely view images, video, documents, html, java, Etc. 
+files from (LAN) local area network connected computers using a web browse. Directory links 
 to files and subfolders are dynamically created and displayed in a right side 
 listing that can be arranged and sorted via variables. Variables are contained 
 in the settings.py file and allow customization of webserver display and configuration settings.
 
-I use this in my pi-timolo and other projects
+I use webserver.py in my pi-timolo and other projects
 to allow easy browsing of image, video or other files.  
 
 This web server can display other types of content
