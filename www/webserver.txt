@@ -24,6 +24,5 @@ open a new tab.
 This browser can only access local raspberry pi
 files. It cannot access internet web pages.
 
-see pi-timolo github wiki for more details
-
-https://github.com/pageauc/pi-timolo/wiki
+For more information see 
+github repo https://github.com/pageauc/webserver
