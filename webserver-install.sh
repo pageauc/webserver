@@ -12,7 +12,7 @@ else
   echo "New $APP_DIR Install"
   STATUS="New Install"
   mkdir -p $APP_DIR
-  mkdir -p $APP_DIR/www/media
+  mkdir -p $APP_DIR/www
   echo "$APP_DIR Folder Created"
 fi 
 
@@ -27,13 +27,17 @@ if [ $? -ne 0 ] ;  then
   wget -O webserver.sh https://raw.github.com/pageauc/webserver/master/webserver.sh  
   wget -O webserver-install.sh https://raw.github.com/pageauc/webserver/master/webserver-install.sh
   wget -O Readme.md https://raw.github.com/pageauc/webserver/master/Readme.md
-  wget -O www/webserver.txt https://raw.github.com/pageauc/webserver/master/www/webserver.txt   
+  wget -O www/webserver.txt https://raw.github.com/pageauc/webserver/master/www/webserver.txt 
+  wget -O www/calculator.zip https://raw.github.com/pageauc/webserver/master/www/calculator.zip
+  wget -O www/images.zip https://raw.github.com/pageauc/webserver/master/www/images.zip
 else
   wget -O webserver.py -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.py
   wget -O webserver.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.sh
   wget -O webserver-install.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver-install.sh  
   wget -O Readme.md -q --show-progress https://raw.github.com/pageauc/webserver/master/Readme.md
-  wget -O www/webserver.txt https://raw.github.com/pageauc/webserver/master/www/webserver.txt 
+  wget -O www/webserver.txt -q --show-progress https://raw.github.com/pageauc/webserver/master/www/webserver.txt
+  wget -O www/calculator.zip -q --show-progress https://raw.github.com/pageauc/webserver/master/www/calculator.zip
+  wget -O www/images.zip -q --show-progress https://raw.github.com/pageauc/webserver/master/www/images.zip  
 fi
 echo " Done Downloads"
 echo "-------------------------------------------------------------"
@@ -45,6 +49,12 @@ chmod +x *sh
 echo " Done Permissions"
 echo "-------------------------------------------------------------"
 echo ""  
+
+cd www
+unzip -o calculator.zip
+unzip -o images.zip
+rm calculator.zip
+rm images.zip
 
 cd $DIR
 # Check if webserver-install.sh was launched from webserver folder
