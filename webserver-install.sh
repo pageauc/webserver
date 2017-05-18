@@ -1,5 +1,6 @@
 #!/bin/bash
 # Convenient webserver-install.sh script written by Claude Pageau 17-May-2017
+
 ver="1.0"
 APP_DIR='webserver'  # Default folder install location
 
@@ -19,7 +20,6 @@ cd $APP_DIR
 INSTALL_PATH=$( pwd )
 
 echo " Downloading Files"
-
 wget -O settings.py -q --show-progress https://raw.github.com/pageauc/webserver/master/settings.py
 if [ $? -ne 0 ] ;  then
   wget -O settings.py https://raw.github.com/pageauc/webserver/master/settings.py
@@ -27,15 +27,14 @@ if [ $? -ne 0 ] ;  then
   wget -O webserver.sh https://raw.github.com/pageauc/webserver/master/webserver.sh  
   wget -O webserver-install.sh https://raw.github.com/pageauc/webserver/master/webserver-install.sh
   wget -O Readme.md https://raw.github.com/pageauc/webserver/master/Readme.md
-  wget -O webserver.txt https://raw.github.com/pageauc/webserver/master/www/webserver.txt  
+  wget -O www/webserver.txt https://raw.github.com/pageauc/webserver/master/www/webserver.txt   
 else
   wget -O webserver.py -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.py
   wget -O webserver.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.sh
   wget -O webserver-install.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver-install.sh  
   wget -O Readme.md -q --show-progress https://raw.github.com/pageauc/webserver/master/Readme.md
-  wget -O webserver.txt https://raw.github.com/pageauc/webserver/master/www/webserver.txt  
+  wget -O www/webserver.txt https://raw.github.com/pageauc/webserver/master/www/webserver.txt 
 fi
-  
 echo " Done Downloads"
 echo "-------------------------------------------------------------"
 echo " Make Required Files Executable"
