@@ -88,7 +88,9 @@ Edit settings.py file using nano editor per the following commands
 ctrl-x y to exit nano editor and save changes
     
 ### Reference Links  
-github repo https://github.com/pageauc/webserver 
+webserver wiki - https://github.com/pageauc/pi-timolo/wiki/Access-images-via-webserver
+github repo - https://github.com/pageauc/webserver
+
  
 Good Luck
 Claude Pageau 
