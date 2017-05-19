@@ -21,6 +21,7 @@ the browser tab. html files will be displayed full screen in browser tab.
 
 If a folder is selected on the right pane listing
 the folder contents will appear in a new browser tab.
+
 ***IMPORTANT***
 You cannot navigate back to the previous folder from
 this new tab so when you are done with the folder
