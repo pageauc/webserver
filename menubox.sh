@@ -174,7 +174,7 @@ function do_settings_menu ()
   if [ $RET -eq 1 ]; then
     clear
     rm -f $filename_temp
-    rm -f $filename_conf      
+    rm -f $filename_conf
     do_main_menu
   elif [ $RET -eq 0 ]; then
     case "$SET_SEL" in
@@ -209,15 +209,19 @@ function do_about ()
 {
   whiptail --title "About" --msgbox " \
                 webserver.py
+    Manage webserver operation and settings
+
           written by Claude Pageau
 
-    Manage webserver operation and settings         
-          
-             for more information
-    see https://github.com/pageauc/webserver                
+           for more information
+
+    View Readme.md (use menubox.sh help option)
+    or
+    visit web repo at https://github.com/pageauc/webserver
+    Raise a github issue for issues or questions
 
 \
-" 35 20 35
+" 0 0 0
 }
 
 #------------------------------------------------------------------------------
@@ -226,11 +230,11 @@ function do_main_menu ()
   init_status
   SELECTION=$(whiptail --title "Main Menu" --menu "Arrow/Enter Selects or Tab Key" 0 0 0 --cancel-button Quit --ok-button Select \
   "a $WEB_1" "$WEB_2" \
-  "b Settings" "Change webserver settings" \
-  "c View" "View Readme.md" \
+  "b Settings" "Edit/View webserver Settings" \
+  "c Help" "View Readme.md" \
   "d Upgrade" "Upgrade webserver files from GitHub.com" \
   "e About" "Information about this program" \
-  "q Quit" "Exit This Program"  3>&1 1>&2 2>&3)
+  "q Quit" "Exit menubox.sh"  3>&1 1>&2 2>&3)
 
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -240,7 +244,7 @@ function do_main_menu ()
       a\ *) do_webserver ;;
       b\ *) do_settings_menu ;;
       c\ *) more -d Readme.md
-            do_anykey ;;      
+            do_anykey ;;
       d\ *) do_upgrade ;;
       e\ *) do_about ;;
       q\ *) clear
