@@ -1,7 +1,6 @@
 # webserver.py
 ### Raspberry Pi - Simple python Stand Alone Local Network Web Server
-#### Reads folder and file entries into a right pane list. 
-#### Selected folder opens new tab and Selected file displays in left pane.
+#### Reads folder and file entries into a right pane list. Selected folder opens new tab and Selected file displays in left pane.
 
 ### Description
 This is a single file stand alone python webserver that needs minimal or no setup.
