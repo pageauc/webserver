@@ -5,7 +5,7 @@
 ### Description
 This is a single file stand alone python webserver that needs minimal or no setup.
 This webserver can be used to remotely view images, video, documents, html, java, Etc.
-files from your(LAN) local area network connected computers using a web browse. 
+files from your (LAN) local area network connected computers using a web browse. 
 Directory links to files and subfolders are dynamically created and displayed
 in a right side listing that can be arranged and sorted via variables. 
 Variables are contained in the settings.py file and allow customization of
