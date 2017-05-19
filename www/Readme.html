@@ -1,0 +1,117 @@
+<h1>
+<a id="user-content-webserverpy" class="anchor" href="#webserverpy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>webserver.py</h1>
+<h3>
+<a id="user-content-raspberry-pi---simple-python-stand-alone-local-network-web-server" class="anchor" href="#raspberry-pi---simple-python-stand-alone-local-network-web-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Raspberry Pi - Simple python Stand Alone Local Network Web Server</h3>
+<h4>
+<a id="user-content-reads-folder-and-file-entries-into-a-right-pane-list-selected-folder-opens-new-tab-and-selected-file-displays-in-left-pane" class="anchor" href="#reads-folder-and-file-entries-into-a-right-pane-list-selected-folder-opens-new-tab-and-selected-file-displays-in-left-pane" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reads folder and file entries into a right pane list. Selected folder opens new tab and Selected file displays in left pane.</h4>
+<h3>
+<a id="user-content-description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description</h3>
+<p>This is a single file stand alone python webserver that needs minimal or no setup.
+This webserver can be used to remotely view images, video, documents, html, java, Etc.
+files from your (LAN) local area network connected computers using a web browse.
+Directory links to files and subfolders are dynamically created and displayed
+in a right side listing that can be arranged and sorted via variables.
+Variables are contained in the settings.py file and allow customization of
+webserver display and configuration settings.</p>
+<p>I use webserver.py in my pi-timolo and other projects
+to allow easy browsing of image, video or other files.</p>
+<p>This web server can display other types of content
+like javascript, css Etc will run. A sample calculator program is
+include in the calculator folder of the www web root.
+If a folder has an index.html it will take over
+the browser tab. html files will be displayed full screen in browser tab.</p>
+<p>If a folder is selected on the right pane listing
+the folder contents will appear in a new browser tab.</p>
+<p><em><strong>IMPORTANT</strong></em>
+You cannot navigate back to the previous folder from
+this new tab so when you are done with the folder
+tab just close it.  You can navigate through a
+folder structure but remember each folder will
+open a new tab.</p>
+<p>This browser can only access local raspberry pi files.
+It cannot access internet web pages.</p>
+<p><em><strong>Please Note</strong></em>
+You will need at least two entries in a folder
+before the web server will display content.</p>
+<p><em><strong>Change Web Root</strong></em>
+Edit the settings.py to change the default www folder web root to
+another folder location of your choice.</p>
+<h3>
+<a id="user-content-quick-install" class="anchor" href="#quick-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick Install</h3>
+<p>For Easy webserver-install.sh onto raspbian RPI.</p>
+<pre><code>curl -L https://raw.github.com/pageauc/webserver/master/webserver-install.sh | bash
+</code></pre>
+<p>From a computer logged into the RPI via SSH(Putty) or desktop terminal session</p>
+<ul>
+<li>Use mouse to highlight curl command above, right click, copy.</li>
+<li>Select RPI SSH(Putty) window, mouse right click, paste.
+The command will download and execute the GitHub webserver-install.sh script</li>
+</ul>
+<h3>
+<a id="user-content-manual-install" class="anchor" href="#manual-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Manual Install</h3>
+<p>From logged in RPI SSH session or console terminal perform the following. You can review
+the webserver-install.sh script code before executing.</p>
+<pre><code>cd ~
+wget https://raw.github.com/pageauc/webserver/master/webserver-install.sh
+chmod +x webserver-install.sh
+./webserver-install.sh
+</code></pre>
+<h3>
+<a id="user-content-how-to-run-webserverpy" class="anchor" href="#how-to-run-webserverpy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Run webserver.py</h3>
+<p>Use menubox.sh for an easy way to manage the webserver</p>
+<pre><code>cd ~/webserver
+./menubox.sh
+</code></pre>
+<p>or to manually start webserver.py in the foreground (ctl-c to stop)
+Note if you exit the terminal session the webserver will exit.  See below
+for manually running webserver.py in background using webserver.sh</p>
+<pre><code>cd ~/webserver
+./webserver.py
+</code></pre>
+<p>A message will be displayed indicating the ip address:port to enter in
+a browser url bar.  This will access the webserver files in the server web root.</p>
+<p>If you want to run the webserver.py as a background daemon then use webserver.sh
+If no parameter is specified it will display the PID or indicate webserver.py is
+not running.</p>
+<p>To Start webserver.py as a background daemon</p>
+<pre><code>cd ~/webserver
+./webserver.sh start
+</code></pre>
+<p>To Stop webserver.py</p>
+<pre><code>cd ~/webserver
+./webserver.sh stop
+</code></pre>
+<h3>
+<a id="user-content-run-webserverpy-on-boot" class="anchor" href="#run-webserverpy-on-boot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Run webserver.py on Boot</h3>
+<p>To auto launch webserver.py on boot-up of raspberry pi perform the following</p>
+<pre><code>sudo nano /etc/rc.local
+</code></pre>
+<p>In nano add the following command to the rc.local file just before the exit 0 command.
+This will launch webserver and the webserver in the background running under the pi user (not root).
+Note the webserver startup is optional.</p>
+<pre><code>su pi -c "/home/pi/webserver/webserver.sh start &gt; /dev/null"
+</code></pre>
+<p>ctrl-x y to save and exit nano editor</p>
+<p>Reboot RPI and test operation by triggering motion and checking images are successfully saved to your motion or timelapse folder.</p>
+<pre><code>sudo reboot
+</code></pre>
+<p>use menubox.sh to verify that webserver.py is running after reboot</p>
+<h3>
+<a id="user-content-customize-settings" class="anchor" href="#customize-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customize Settings</h3>
+<p>The webserver.py variables are stored in the settings.py file.  These can be
+edited using the nano editor to customize for your particular needs if required</p>
+<p>Edit settings.py file using nano editor per the following commands</p>
+<pre><code>cd ~/webserver
+nano settings.py
+</code></pre>
+<p>ctrl-x y to exit nano editor and save changes</p>
+<p>You can also use menubox.sh to edit/view the webserver settings</p>
+<pre><code>cd ~/webserver
+./menubox.sh
+</code></pre>
+<h3>
+<a id="user-content-reference-links" class="anchor" href="#reference-links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reference Links</h3>
+<p>webserver wiki - <a href="https://github.com/pageauc/pi-timolo/wiki/Access-images-via-webserver">https://github.com/pageauc/pi-timolo/wiki/Access-images-via-webserver</a><br>
+github webserver repo - <a href="https://github.com/pageauc/webserver">https://github.com/pageauc/webserver</a></p>
+<p>Good Luck
+Claude Pageau</p>
