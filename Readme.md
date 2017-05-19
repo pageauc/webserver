@@ -4,38 +4,40 @@
 ### Description
 This is a single file stand alone python webserver that needs minimal or no setup.
 This webserver can be used to remotely view images, video, documents, html, java, Etc.
-files from (LAN) local area network connected computers using a web browse. Directory links
-to files and subfolders are dynamically created and displayed in a right side
-listing that can be arranged and sorted via variables. Variables are contained
-in the settings.py file and allow customization of webserver display and configuration settings.
+files from your(LAN) local area network connected computers using a web browse. 
+Directory links to files and subfolders are dynamically created and displayed
+in a right side listing that can be arranged and sorted via variables. 
+Variables are contained in the settings.py file and allow customization of
+webserver display and configuration settings.
 
 I use webserver.py in my pi-timolo and other projects
 to allow easy browsing of image, video or other files.
 
 This web server can display other types of content
-but html files will be displayed full screen.
-Web pages with javascript, css Etc will run. A sample calculator program is
+like javascript, css Etc will run. A sample calculator program is
 include in the calculator folder of the www web root.
 If a folder has an index.html it will take over
-the browser tab.
+the browser tab. html files will be displayed full screen in browser tab.
 
 If a folder is selected on the right pane listing
 the folder contents will appear in a new browser tab.
+***IMPORTANT***
 You cannot navigate back to the previous folder from
 this new tab so when you are done with the folder
 tab just close it.  You can navigate through a
 folder structure but remember each folder will
 open a new tab.
 
-This browser can only access local raspberry pi
-files. It cannot access internet web pages.
+This browser can only access local raspberry pi files.
+It cannot access internet web pages.
 
 ***Please Note***
 You will need at least two entries in a folder
 before the web server will display content.
 
+***Change Web Root***
 Edit the settings.py to change the default www folder web root to
-another location of your choice.
+another folder location of your choice.
 
 ### Quick Install
 For Easy webserver-install.sh onto raspbian RPI.
@@ -125,7 +127,7 @@ You can also use menubox.sh to edit/view the webserver settings
     ./menubox.sh
 
 ### Reference Links
-webserver wiki - https://github.com/pageauc/pi-timolo/wiki/Access-images-via-webserver
+webserver wiki - https://github.com/pageauc/pi-timolo/wiki/Access-images-via-webserver   
 github webserver repo - https://github.com/pageauc/webserver
 
 
