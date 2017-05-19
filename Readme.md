@@ -54,6 +54,15 @@ the webserver-install.sh script code before executing.
     ./webserver-install.sh
     
 ### How to Run webserver.py
+
+Use menubox.sh for an easy way to manage the webserver
+
+    cd ~/webserver
+    ./menubox.sh
+    
+or to manually start webserver.py in the foreground (ctl-c to stop)
+Note if you exit the terminal session the webserver will exit.  See below
+for manually running webserver.py in background using webserver.sh
     
     cd ~/webserver
     ./webserver.py
@@ -75,6 +84,26 @@ To Stop webserver.py
     cd ~/webserver
     ./webserver.sh stop    
      
+### Run webserver.py on Boot
+
+To auto launch webserver.py on boot-up of raspberry pi perform the following
+
+    sudo nano /etc/rc.local
+    
+In nano add the following command to the rc.local file just before the exit 0 command.
+This will launch webserver and the webserver in the background running under the pi user (not root). 
+Note the webserver startup is optional.
+
+    su pi -c "/home/pi/webserver/webserver.sh start > /dev/null"
+
+ctrl-x y to save and exit nano editor
+
+Reboot RPI and test operation by triggering motion and checking images are successfully saved to your motion or timelapse folder.
+
+    sudo reboot     
+
+use menubox.sh to verify that webserver.py is running after reboot    
+     
 ### Customize Settings
 
 The webserver.py variables are stored in the settings.py file.  These can be
@@ -86,6 +115,11 @@ Edit settings.py file using nano editor per the following commands
     nano settings.py
 
 ctrl-x y to exit nano editor and save changes
+
+You can also use menubox.sh to edit/view the webserver settings
+
+    cd ~/webserver
+    ./menubox.sh
     
 ### Reference Links  
 webserver wiki - https://github.com/pageauc/pi-timolo/wiki/Access-images-via-webserver   

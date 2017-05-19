@@ -1,4 +1,8 @@
-# User Configuration variable settings for pitimolo
+# User Configuration variable settings for webserver
+# Done by - Claude Pageau
+
+configTitle = "webserver Default Settings"
+configName  = "settings.py"
 
 #======================================
 #       webserver.py Settings

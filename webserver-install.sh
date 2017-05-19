@@ -19,10 +19,17 @@ fi
 cd $APP_DIR
 INSTALL_PATH=$( pwd )
 
+# Remember where this script was launched from
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "-------------------------------------------------------------"
+echo "      webserver-install.sh script ver $ver"
+echo "-------------------------------------------------------------"
 echo " Downloading Files"
 wget -O settings.py -q --show-progress https://raw.github.com/pageauc/webserver/master/settings.py
 if [ $? -ne 0 ] ;  then
   wget -O settings.py https://raw.github.com/pageauc/webserver/master/settings.py
+  wget -O menubox.sh https://raw.github.com/pageauc/webserver/master/menubox.sh 
   wget -O webserver.py https://raw.github.com/pageauc/webserver/master/webserver.py
   wget -O webserver.sh https://raw.github.com/pageauc/webserver/master/webserver.sh  
   wget -O webserver-install.sh https://raw.github.com/pageauc/webserver/master/webserver-install.sh
@@ -31,6 +38,7 @@ if [ $? -ne 0 ] ;  then
   wget -O www/calculator.zip https://raw.github.com/pageauc/webserver/master/www/calculator.zip
   wget -O www/images.zip https://raw.github.com/pageauc/webserver/master/www/images.zip
 else
+  wget -O menubox.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/menubox.sh 
   wget -O webserver.py -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.py
   wget -O webserver.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver.sh
   wget -O webserver-install.sh -q --show-progress https://raw.github.com/pageauc/webserver/master/webserver-install.sh  
@@ -66,7 +74,14 @@ if [ "$DIR" != "$INSTALL_PATH" ]; then
 fi
 
 echo "-----------------------------------------------"
-echo " $STATUS Complete"
+echo " $STATUS Complete to $INSTALL_PATH"
+echo ""
+echo "Instructions to Run this Webserver"
+echo ""
+echo "    cd ~/webserver"
+echo "    ./menubox.sh"
+echo ""
+echo "This will display a whiptail menu of options"
 echo "-----------------------------------------------"
 
 echo "Good Luck Claude ..."
