@@ -18,6 +18,8 @@ the folder contents will appear in existing browser tab.
 Select the <=BACK link or Right panel listing to
 navigate back to previous folder. BACK will not
 be displayed when in web server root folder.	 
+Use browser refresh to update web page and display most
+recent data.
 
 This browser can only access local raspberry pi
 files. It cannot access internet web pages.
