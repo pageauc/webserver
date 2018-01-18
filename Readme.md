@@ -2,7 +2,7 @@
 ### Raspberry Pi - Simple python Stand Alone Local Network Web Server
 #### Reads folder and file entries into a right pane list. Selected folder opens new tab and Selected file displays in left pane.
 
-### Description
+## Description
 This is a single file stand alone python webserver that needs minimal or no setup.
 This webserver can be used to remotely view images, video, documents, html, java, Etc.
 files from your (LAN) local area network connected computers using a web browse. 
@@ -21,14 +21,9 @@ If a folder has an index.html it will take over
 the browser tab. html files will be displayed full screen in browser tab.
 
 If a folder is selected on the right pane listing
-the folder contents will appear in a new browser tab.
-
-***IMPORTANT***
-You cannot navigate back to the previous folder from
-this new tab so when you are done with the folder
-tab just close it.  You can navigate through a
-folder structure but remember each folder will
-open a new tab.
+the folder contents will appear in a existing browser tab.
+Select <=BACK link to navigate back through folder structure.   
+NOTE: BACK link will not display in web root folder.
 
 This browser can only access local raspberry pi files.
 It cannot access internet web pages.
@@ -41,7 +36,10 @@ before the web server will display content.
 Edit the settings.py to change the default www folder web root to
 another folder location of your choice.
 
-### Quick Install
+    cd ~/webserver
+    nano settings.py
+
+## Quick Install
 For Easy webserver-install.sh onto raspbian RPI.
 
     curl -L https://raw.github.com/pageauc/webserver/master/webserver-install.sh | bash
@@ -51,7 +49,7 @@ From a computer logged into the RPI via SSH(Putty) or desktop terminal session
 * Select RPI SSH(Putty) window, mouse right click, paste.
 The command will download and execute the GitHub webserver-install.sh script
 
-### Manual Install
+## Manual Install
 From logged in RPI SSH session or console terminal perform the following. You can review
 the webserver-install.sh script code before executing.
 
@@ -60,7 +58,7 @@ the webserver-install.sh script code before executing.
     chmod +x webserver-install.sh
     ./webserver-install.sh
 
-### How to Run webserver.py
+## How to Run webserver.py
 
 Use menubox.sh for an easy way to manage the webserver
 
@@ -91,7 +89,7 @@ To Stop webserver.py
     cd ~/webserver
     ./webserver.sh stop
 
-### Run webserver.py on Boot
+## Run webserver.py on Boot
 
 To auto launch webserver.py on boot-up of raspberry pi perform the following
 
@@ -111,7 +109,7 @@ Reboot RPI and test operation by triggering motion and checking images are succe
 
 use menubox.sh to verify that webserver.py is running after reboot
 
-### Customize Settings
+## Customize Settings
 
 The webserver.py variables are stored in the settings.py file.  These can be
 edited using the nano editor to customize for your particular needs if required
@@ -128,7 +126,7 @@ You can also use menubox.sh to edit/view the webserver settings
     cd ~/webserver
     ./menubox.sh
 
-### Reference Links
+## Reference Links
 webserver wiki - https://github.com/pageauc/pi-timolo/wiki/Access-images-via-webserver   
 github webserver repo - https://github.com/pageauc/webserver
 
