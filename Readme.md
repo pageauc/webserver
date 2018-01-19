@@ -40,7 +40,7 @@ another folder location of your choice.
     nano settings.py
 
 ## Quick Install
-For Easy webserver-install.sh onto raspbian RPI.
+For Easy webserver-install.sh onto raspbian RPI.   
 ***Step 1*** Highlight curl command in code box below using mouse left button. Right click mouse in highlighted area and Copy.   
 ***Step 2*** On RPI putty SSH or terminal session right click, select paste then Enter to download and run script.   
 
