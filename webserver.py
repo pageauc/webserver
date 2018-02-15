@@ -41,15 +41,15 @@ BASE_DIR = os.path.dirname(SCRIPT_PATH)   # Get the path location only (excludin
 PROG_NAME = os.path.basename(__file__)    # Name of this program
 
 # Check for variable file to import and error out if not found.
-CONFIG_FILE_PATH = os.path.join(BASE_DIR, "config.py")
+CONFIG_FILE_PATH = os.path.join(BASE_DIR, "settings.py")
 if not os.path.exists(CONFIG_FILE_PATH):
     print("ERROR - Cannot Import Configuration Variables.")
     print("        Missing Configuration File %s" % CONFIG_FILE_PATH)
     sys.exit(1)
 else:
-    # Read Configuration variables from config.py file
+    # Read Configuration variables from settings.py file
     print("Importing Configuration Variables from File %s" % CONFIG_FILE_PATH)
-    from config import *
+    from settings import *
 
 os.chdir(web_server_root)
 web_root = os.getcwd()
