@@ -18,7 +18,7 @@ PROG_VER = "ver 3.4 written by Claude Pageau"
  from http://stackoverflow.com/questions/8044873/python-how-to-override-simplehttpserver-to-show-timestamp-in-directory-listing
 
  1 - Use nano editor to change webserver.py web_server_root and other variables to suit at bottom of config.py
-     nano config.py         # Webserver settings are near the end of the file
+     nano settings.py         # Webserver settings are near the end of the file
      ctrl-x y to save changes
 
  2 - On Terminal session execute command below.  This will display file access information
@@ -31,9 +31,9 @@ PROG_VER = "ver 3.4 written by Claude Pageau"
      ./webserver.sh
 
  4 - On a LAN computer web browser url bar, input this RPI ip address and port number per below
-     example    http://192.168.1.110:8080
+     example    http://192.168.1.110:8090
 
- Variable Settings are imported from config.py
+ Variable Settings are imported from settings.py
 '''
 
 SCRIPT_PATH = os.path.abspath(__file__)   # Find the full path of this python script
