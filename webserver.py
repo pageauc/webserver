@@ -10,7 +10,7 @@ import urllib
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 from StringIO import StringIO
 
-PROG_VER = "ver 3.4 written by Claude Pageau"
+PROG_VER = "ver 3.5  written by Claude Pageau"
 '''
  SimpleHTTPServer python program to allow selection of images from right panel and display in an iframe left panel
  Use for local network use only since this is not guaranteed to be a secure web server.
@@ -18,7 +18,7 @@ PROG_VER = "ver 3.4 written by Claude Pageau"
  from http://stackoverflow.com/questions/8044873/python-how-to-override-simplehttpserver-to-show-timestamp-in-directory-listing
 
  1 - Use nano editor to change webserver.py web_server_root and other variables to suit at bottom of config.py
-     nano settings.py         # Webserver settings are near the end of the file
+     nano config.py         # Webserver settings are near the end of the file
      ctrl-x y to save changes
 
  2 - On Terminal session execute command below.  This will display file access information
@@ -31,23 +31,23 @@ PROG_VER = "ver 3.4 written by Claude Pageau"
      ./webserver.sh
 
  4 - On a LAN computer web browser url bar, input this RPI ip address and port number per below
-     example    http://192.168.1.110:8090
+     example    http://192.168.1.110:8080
 
- Variable Settings are imported from settings.py
+ Variable Settings are imported from config.py
 '''
 
 SCRIPT_PATH = os.path.abspath(__file__)   # Find the full path of this python script
 BASE_DIR = os.path.dirname(SCRIPT_PATH)   # Get the path location only (excluding script name)
 PROG_NAME = os.path.basename(__file__)    # Name of this program
-
 # Check for variable file to import and error out if not found.
 CONFIG_FILE_PATH = os.path.join(BASE_DIR, "settings.py")
+# Check if config file found and import variable settings.
 if not os.path.exists(CONFIG_FILE_PATH):
     print("ERROR - Cannot Import Configuration Variables.")
     print("        Missing Configuration File %s" % CONFIG_FILE_PATH)
     sys.exit(1)
 else:
-    # Read Configuration variables from settings.py file
+    # Read Configuration variables from config.py file
     print("Importing Configuration Variables from File %s" % CONFIG_FILE_PATH)
     from settings import *
 
@@ -63,17 +63,17 @@ try:
 except:
     print("ERROR - Can't Find a Network IP Address on this Raspberry Pi")
     print("        Configure Network and Try Again")
-    sys.exit(1)
+    myip = None
 
 if web_list_by_datetime:
-    dir_sort = 'DateTime'
+    dir_sort = 'Sort DateTime'
 else:
-    dir_sort = 'FileName'
+    dir_sort = 'Sort Filename'
 
 if web_list_sort_descending:
-    dir_order = 'Descend'
+    dir_order = 'Desc'
 else:
-    dir_order = 'Ascend'
+    dir_order = 'Asc'
 
 list_title = "%s %s" % (dir_sort, dir_order)
 
@@ -95,10 +95,21 @@ class DirectoryHandler(SimpleHTTPRequestHandler):
             list.sort(key=lambda a: a.lower(), reverse=web_list_sort_descending)
         f = StringIO()
         displaypath = cgi.escape(urllib.unquote(self.path))
+        # find index of first file or hyperlink
+
+        file_found = False
+        cnt = 0        
+        for entry in list:  # See if there is a file for initializing iframe
+            fullname = os.path.join(path, entry)       
+            if os.path.islink(fullname) or os.path.isfile(fullname):
+                file_found = True
+                break
+            cnt += 1                 
+
         # Start HTML formatting code
         f.write('<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">')
         f.write('<head>')
-        # Setup Meta Tags
+        # Setup Meta Tags and better viewing on small screen devices
         f.write('<meta "Content-Type" content="txt/html; charset=ISO-8859-1" />')
         f.write('<meta name="viewport" content="width=device-width, initial-scale=1.0" />')
         if web_page_refresh_on:
@@ -111,28 +122,34 @@ class DirectoryHandler(SimpleHTTPRequestHandler):
         # Start Left iframe Image Panel
         f.write('<iframe width="%s" height="%s" align="left"'
                 % (web_iframe_width_usage, web_image_height))
-        if web_page_blank:
+        if file_found:  # file was display it in left pane
+            f.write('src="%s" name="imgbox" id="imgbox" alt="%s">'
+                    % (list[cnt], web_page_title))                
+        else:  # No files found so blank left pane
             f.write('src="%s" name="imgbox" id="imgbox" alt="%s">'
                     % ("about:blank", web_page_title))
-                    # display second entry in right list since list[0] may still be in progress
-        else:
-            f.write('src="%s" name="imgbox" id="imgbox" alt="%s">'
-                    % (list[0], web_page_title))
-                    # display second entry in right list since list[0] may still be in progress
 
         f.write('<p>iframes are not supported by your browser.</p></iframe>')
         # Start Right File selection List Panel
         list_style = '<div style="height: ' + web_list_height + 'px; overflow: auto; white-space: nowrap;">'
         f.write(list_style)
         # f.write('<center><b>%s</b></center>' % (self.path))
-        f.write('<center><b>%s</b></center>' % list_title)
+        if web_page_refresh_on:
+            sort_heading = ('&nbsp;&nbsp;Refresh %s s&nbsp;&nbsp;<b>%s</b>' %
+                            (web_page_refresh_sec, list_title))
+        else:
+            # Show a refresh button since auto refesh is turned off.
+            sort_heading = ('''<FORM>&nbsp;&nbsp;<INPUT TYPE="button" onClick="history.go(0)"
+VALUE="Refresh">&nbsp;&nbsp;<b>%s</b></FORM>''' % list_title)
+        f.write('%s' % sort_heading)
         f.write('<ul name="menu" id="menu" style="list-style-type:none; padding-left: 4px">')
-        # Create the formatted list of right panel hyperlinks to files in the specified directory
+        # Create the formatted list of right panel hyper-links to files in the specified directory
 
         if not self.path is "/":   # Display folder Back arrow navigation if not in web root
             f.write('<li><a href="%s" >%s</a></li>\n'
                     % (urllib.quote(".."), cgi.escape("< BACK")))
         display_entries = 0
+        file_found = False
         for name in list:
             display_entries += 1
             if web_max_list_entries > 1:
@@ -143,10 +160,8 @@ class DirectoryHandler(SimpleHTTPRequestHandler):
             date_modified = time.strftime('%H:%M:%S %d-%b-%Y', time.localtime(os.path.getmtime(fullname)))
             # Append / for directories or @ for symbolic links
             if os.path.islink(fullname):
-                displayname = name + "@"
-                # Note: a link to a directory displays with @ and links with /
-            if os.path.isdir(fullname):
-                # Note this will open a new tab to display the selected folder.
+                displayname = name + "@"  # symbolic link found
+            if os.path.isdir(fullname):   # check if entry is a directory
                 displayname = name + "/"
                 linkname = os.path.join(displaypath, displayname)
                 f.write('<li><a href="%s" >%s</a></li>\n'
@@ -154,6 +169,7 @@ class DirectoryHandler(SimpleHTTPRequestHandler):
             else:
                 f.write('<li><a href="%s" target="imgbox">%s</a> - %s</li>\n'
                         % (urllib.quote(linkname), cgi.escape(displayname), date_modified))
+
         if (not self.path is "/") and display_entries > 35:   # Display folder Back arrow navigation if not in web root
             f.write('<li><a href="%s" >%s</a></li>\n' % (urllib.quote(".."), cgi.escape("< BACK")))
         f.write('</ul></div><p><b>')
@@ -211,8 +227,8 @@ try:
     httpd.serve_forever()
 except KeyboardInterrupt:
     print("")
-    print("User Pressed ctrl-c")    
-    print("%s %s" % (PROG_NAME, PROG_VER))    
+    print("User Pressed ctrl-c")
+    print("%s %s" % (PROG_NAME, PROG_VER))
     print("Exiting Bye ...")
     httpd.shutdown()
     httpd.socket.close()
