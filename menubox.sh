@@ -23,12 +23,12 @@ function do_anykey ()
 function init_status ()
 {
   if [ -z "$( pgrep -f $DIR/webserver.py )" ]; then
-     WEB_1="Start webserver.py"
-     WEB_2="Start webserver.py in background"
+     WEB_1="START"
+     WEB_2="webserver.py in background"
   else
      webserver_pid=$( pgrep -f $DIR/webserver.py )
-     WEB_1="Stop webserver"
-     WEB_2="Stop webserver.py - PID is $webserver_pid"
+     WEB_1="STOP"
+     WEB_2="webserver.py - PID is $webserver_pid"
   fi
 }
 
@@ -228,13 +228,13 @@ function do_about ()
 function do_main_menu ()
 {
   init_status
-  SELECTION=$(whiptail --title "Main Menu" --menu "Arrow/Enter Selects or Tab Key" 0 0 0 --cancel-button Quit --ok-button Select \
+  SELECTION=$(whiptail --title "Webserver Main Menu" --menu "Arrow/Enter Selects or Tab Key" 0 0 0 --cancel-button Quit --ok-button Select \
   "a $WEB_1" "$WEB_2" \
-  "b Settings" "Edit/View webserver Settings" \
-  "c Help" "View Readme.md" \
-  "d Upgrade" "Upgrade webserver files from GitHub.com" \
-  "e About" "Information about this program" \
-  "q Quit" "Exit menubox.sh"  3>&1 1>&2 2>&3)
+  "b SETTINGS" "Edit/View webserver Settings" \
+  "c HELP" "View Readme.md" \
+  "d UPGRADE" "Files From GitHub.com" \
+  "e ABOUT" "This Program" \
+  "q QUIT" "Exit menubox.sh"  3>&1 1>&2 2>&3)
 
   RET=$?
   if [ $RET -eq 1 ]; then
