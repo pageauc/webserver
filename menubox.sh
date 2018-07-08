@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver="1.00"
+ver="1.10"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
@@ -22,13 +22,15 @@ function do_anykey ()
 #------------------------------------------------------------------------------
 function init_status ()
 {
-  if [ -z "$( pgrep -f $DIR/webserver.py )" ]; then
+  if [ -z "$( pgrep -f webserver.py )" ]; then
      WEB_1="START"
      WEB_2="webserver.py in background"
   else
-     webserver_pid=$( pgrep -f $DIR/webserver.py )
+     myip=$(ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d " " -f 12 | cut -d ":" -f 2 )
+     myport=$( grep "web_server_port" settings.py | cut -d "=" -f 2 | cut -d "#" -f 1 | awk '{$1=$1};1' )
+     webserver_pid=$( pgrep -f webserver.py )
      WEB_1="STOP"
-     WEB_2="webserver.py - PID is $webserver_pid"
+     WEB_2="webserver.py - PID is $webserver_pid http://$myip:$myport"
   fi
 }
 
@@ -42,7 +44,7 @@ function do_webserver ()
      else
        myip=$(ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d " " -f 12 | cut -d ":" -f 2 )
        myport=$( grep "web_server_port" settings.py | cut -d "=" -f 2 | cut -d "#" -f 1 | awk '{$1=$1};1' )
-       whiptail --msgbox --title "Webserver Access" "Access web server from another network computer web browser using url http://$myip:$myport" 15 50
+       whiptail --msgbox --title "Webserver Access" "Access web server from another network computer web browser using url http://$myip:$myport" 15 60
      fi
   else
      $DIR/webserver.sh stop
@@ -62,7 +64,6 @@ function do_webserver_config ()
         whiptail --msgbox "ERROR - $DIR/settings.py File Not Found. Please Investigate." 20 65 1
     fi
 }
-
 
 #--------------------------------------------------------------------
 function do_edit_save ()
@@ -228,6 +229,7 @@ function do_about ()
 function do_main_menu ()
 {
   init_status
+
   SELECTION=$(whiptail --title "Webserver Main Menu" --menu "Arrow/Enter Selects or Tab Key" 0 0 0 --cancel-button Quit --ok-button Select \
   "a $WEB_1" "$WEB_2" \
   "b SETTINGS" "Edit/View webserver Settings" \
