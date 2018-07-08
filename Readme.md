@@ -1,6 +1,8 @@
 # webserver.py
 ### Simple python Stand Alone Local Network Web Server
-#### Reads folder and file entries into a right pane list. Selected folder opens new tab and Selected file displays in left pane.
+#### Dynamically Reads folder and file entries into a right pane list. Selected folder opens in current browser tab
+with back arrow for navigation back. File links selected in right pane display contents in left pane. Refresh button
+re-reads directory structure for left pane display. 
 
 ## Quick Install
 Log into destination computer using Putty SSH or open a computer terminal session on the destination computer.
