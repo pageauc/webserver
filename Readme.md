@@ -1,18 +1,39 @@
 # webserver.py
-### Raspberry Pi - Simple python Stand Alone Local Network Web Server
+### Simple python Stand Alone Local Network Web Server
 #### Reads folder and file entries into a right pane list. Selected folder opens new tab and Selected file displays in left pane.
+
+## Quick Install
+Log into destination computer using Putty SSH or open a computer terminal session on the destination computer.
+This can be a Raspberry Pi, Debian or similar unix system that supports apt-get.     
+***Step 1*** Highlight curl command in code box below using mouse left button. Right click mouse in highlighted area and Copy.   
+***Step 2*** On RPI putty SSH or terminal session right click, select paste then Enter to download and run script.   
+
+    curl -L https://raw.github.com/pageauc/webserver/master/webserver-install.sh | bash
+
+The command will download and execute the GitHub ***webserver-install.sh*** bash script.
+Alternatively you can git clone the repository to the local system
+
+    cd ~
+    git clone https://raw.github.com/pageauc/webserver
+
+Screen shot of web interface
+![menubox main menu](https://github.com/pageauc/webserver/blob/master/webpage.png)   
+
+Screen shot of whiptail menu
+![menubox main menu](https://github.com/pageauc/webserver/blob/master/menubox.png)    
 
 ## Description
 This is a single file stand alone python webserver that needs minimal or no setup.
 This webserver can be used to remotely view images, video, documents, html, java, Etc.
-files from your (LAN) local area network connected computers using a web browse. 
+files from your (LAN) local area network connected computers using a web browser. 
 Directory links to files and subfolders are dynamically created and displayed
 in a right side listing that can be arranged and sorted via variables. 
 Variables are contained in the settings.py file and allow customization of
 webserver display and configuration settings.
 
-I use webserver.py in my pi-timolo and other projects
-to allow easy browsing of image, video or other files.
+I use webserver.py in my [pi-timolo](https://github.com/pageauc/pi-timolo),
+[speed-camera](https://github.com/pageauc/speed-camera) and other projects
+to allow easy browsing of image, video or other project files.
 
 If a folder is selected on the right pane listing
 the folder contents will appear in the existing browser tab.
@@ -39,15 +60,6 @@ another folder location of your choice.
     cd ~/webserver
     nano settings.py
 
-## Quick Install
-For Easy webserver-install.sh onto raspbian RPI.   
-***Step 1*** Highlight curl command in code box below using mouse left button. Right click mouse in highlighted area and Copy.   
-***Step 2*** On RPI putty SSH or terminal session right click, select paste then Enter to download and run script.   
-
-    curl -L https://raw.github.com/pageauc/webserver/master/webserver-install.sh | bash
-
-The command will download and execute the GitHub ***webserver-install.sh*** script
-
 ## Manual Install
 From logged in RPI SSH session or console terminal perform the following. You can review
 the webserver-install.sh script code before executing.
@@ -58,6 +70,9 @@ the webserver-install.sh script code before executing.
     ./webserver-install.sh
 
 ## How to Run webserver.py
+
+Screen shot of whiptail menu
+![menubox main menu](https://github.com/pageauc/webserver/blob/master/menubox.png)    
 
 Use menubox.sh for an easy way to manage the webserver
 
