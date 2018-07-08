@@ -70,7 +70,7 @@ the webserver-install.sh script code before executing.
 
 ## How to Run webserver.py
 
-Screen shot of whiptail menu   
+Screen shot of menubox.sh whiptail Menu   
 ![menubox main menu](https://github.com/pageauc/webserver/blob/master/menubox.png)    
 
 Use menubox.sh for an easy way to manage the webserver
