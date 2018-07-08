@@ -19,9 +19,6 @@ Alternatively you can git clone the repository to the local system
 Screen shot of web interface
 ![menubox main menu](https://github.com/pageauc/webserver/blob/master/webpage.png)   
 
-Screen shot of whiptail menu
-![menubox main menu](https://github.com/pageauc/webserver/blob/master/menubox.png)    
-
 ## Description
 This is a single file stand alone python webserver that needs minimal or no setup.
 This webserver can be used to remotely view images, video, documents, html, java, Etc.
@@ -71,7 +68,7 @@ the webserver-install.sh script code before executing.
 
 ## How to Run webserver.py
 
-Screen shot of whiptail menu
+Screen shot of whiptail menu   
 ![menubox main menu](https://github.com/pageauc/webserver/blob/master/menubox.png)    
 
 Use menubox.sh for an easy way to manage the webserver
