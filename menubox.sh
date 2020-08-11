@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver="1.10"
+ver="1.20"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
@@ -26,7 +26,7 @@ function init_status ()
      WEB_1="START"
      WEB_2="webserver.py in background"
   else
-     myip=$(ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d " " -f 12 | cut -d ":" -f 2 )
+     myip=$( ifconfig -a | grep 'inet ' | grep -v 127.0.0 | head -n 1 | tr -s " " | cut -d " " -f 3 )
      myport=$( grep "web_server_port" settings.py | cut -d "=" -f 2 | cut -d "#" -f 1 | awk '{$1=$1};1' )
      webserver_pid=$( pgrep -f webserver.py )
      WEB_1="STOP"
@@ -42,7 +42,7 @@ function do_webserver ()
      if [ -z "$( pgrep -f $DIR/webserver.py )" ]; then
         whiptail --msgbox "Failed to Start webserver.py   Please Investigate Problem." 20 70
      else
-       myip=$(ifconfig | grep 'inet ' | grep -v 127.0.0 | cut -d " " -f 12 | cut -d ":" -f 2 )
+       myip=$( ifconfig -a | grep 'inet ' | grep -v 127.0.0 | head -n 1 | tr -s " " | cut -d " " -f 3 )
        myport=$( grep "web_server_port" settings.py | cut -d "=" -f 2 | cut -d "#" -f 1 | awk '{$1=$1};1' )
        whiptail --msgbox --title "Webserver Access" "Access web server from another network computer web browser using url http://$myip:$myport" 15 60
      fi
